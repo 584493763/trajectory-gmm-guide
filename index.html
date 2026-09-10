@@ -5,19 +5,37 @@
   <title>轨迹模型（GMM）入门与 Shiny 操作指南</title>
   <meta name="description" content="面向医学生与临床研究者的 GMM 轨迹模型入门 + Shiny 工具操作手册">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
-  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css">
-  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+  <meta name="robots" content="index,follow">
+  <!-- 全部前端资源本地化，不依赖任何外部 CDN -->
+  <link rel="stylesheet" href="assets/vue.css">
   <style>
     :root { --sidebar-width: 300px; }
-    .sidebar > h1:first-child { margin: 10px 0 20px; font-size: 1.4rem; }
+    body, .markdown-section, .sidebar, .search input {
+      font-family: "Segoe UI", "Microsoft YaHei", "PingFang SC", "Hiragino Sans GB", "Helvetica Neue", Arial, sans-serif;
+    }
+    .markdown-section code, .markdown-section pre, .markdown-section pre > code, .token {
+      font-family: Consolas, "Courier New", Menlo, monospace;
+    }
+    .sidebar > h1:first-child { margin: 10px 0 20px; font-size: 1.35rem; }
     .sidebar ul { margin: 0; }
     .sidebar li p { margin: 1em 0 .5em; color: #9097a1; font-weight: 700; font-size: 12px; letter-spacing: .5px; }
     .markdown-section table { display: table; width: 100%; }
-    .katex-display { overflow-x: auto; overflow-y: hidden; padding: 2px 0; }
+    .markdown-section table th, .markdown-section table td { padding: 6px 10px; }
+    mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; }
+    #app { font-size: 20px; }
+    #app .loading-tip { font-size: 15px; line-height: 1.9; color: #666; }
+    #app .loading-tip a { color: #42b983; }
   </style>
 </head>
 <body>
-  <div id="app">正在加载教程…</div>
+  <div id="app">
+    <p>正在加载教程…</p>
+    <p class="loading-tip">
+      若长时间停留在本页，可能是浏览器阻止了脚本加载。<br>
+      可<a href="轨迹模型GMM入门与Shiny操作指南.md">直接阅读 Markdown 全文</a>，
+      或访问 <a href="https://github.com/584493763/trajectory-gmm-guide">GitHub 仓库</a>。
+    </p>
+  </div>
 
   <script>
     window.$docsify = {
@@ -39,28 +57,45 @@
       },
       plugins: [
         function (hook, vm) {
-          hook.doneEach(function () {
-            if (window.renderMathInElement) {
-              window.renderMathInElement(document.getElementById('main'), {
-                delimiters: [
-                  { left: '$$', right: '$$', display: true },
-                  { left: '$', right: '$', display: false },
-                  { left: '\\(', right: '\\)', display: false },
-                  { left: '\\[', right: '\\]', display: true }
-                ],
-                throwOnError: false,
-                ignoredTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-              });
+          function typeset() {
+            var main = document.getElementById('main');
+            if (window.MathJax && window.MathJax.typesetPromise && main) {
+              try { window.MathJax.typesetPromise([main]); } catch (e) {}
             }
+          }
+          hook.doneEach(function () {
+            typeset();
+            // MathJax 异步加载；若首次渲染时尚未就绪则轮询等待
+            var tries = 0;
+            var timer = setInterval(function () {
+              tries++;
+              if (window.MathJax && window.MathJax.typesetPromise) { typeset(); clearInterval(timer); }
+              else if (tries > 100) { clearInterval(timer); }
+            }, 200);
           });
         }
       ]
     };
+
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        processEscapes: true,
+        processEnvironments: true
+      },
+      svg: { fontCache: 'global' },
+      options: {
+        enableMenu: false,
+        enableAssistiveMml: false,
+        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      },
+      startup: { typeset: false }
+    };
   </script>
 
-  <script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
-  <script src="//cdn.jsdelivr.net/npm/docsify@4/lib/plugins/search.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+  <script src="assets/docsify.min.js"></script>
+  <script src="assets/search.min.js"></script>
+  <script async src="assets/tex-svg.js"></script>
 </body>
 </html>
