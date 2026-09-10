@@ -33,6 +33,22 @@
 
 ---
 
+## 安装与启动
+
+本工具以 R 包 `Ztraje` 的形式分发，安装后在 R 中运行 `run_app()` 即可打开操作界面：
+
+```r
+install.packages("remotes")
+remotes::install_github("Zstats/zstatsManage")
+zstatsManage::installFromOSS("Ztraje")
+library(Ztraje)
+run_app()
+```
+
+> 详见教程 [第零章 安装与启动](./轨迹模型GMM入门与Shiny操作指南.md#第零章-安装与启动)。
+
+---
+
 ## 如何使用
 
 在线阅读完整教程：
@@ -41,6 +57,7 @@
 
 或直接下载 Markdown 文件，在支持数学公式的编辑器中阅读（VS Code、Typora、Obsidian 等）。
 
+> 提示：文中的统计公式使用 GitHub 支持的数学语法（`$ ... $` 行内、`$$ ... $$` 行间），在 GitHub 网页上可直接正常渲染。
 
 > 第五章的实战案例结果已使用内置示例数据实测复现，并与工具输出逐项核对一致（包含 1–5 组模型的收敛状态、信息准则、Entropy、LMR 检验与 AVE）。
 
