@@ -1,6 +1,6 @@
 - [🏠 首页](/)
 
-<p>正文</p>
+<p>教程一 · 轨迹模型 GMM</p>
 
 - [第零章 安装与启动](/轨迹模型GMM入门与Shiny操作指南?id=第零章-安装与启动)
 - [第一章 认识轨迹模型](/轨迹模型GMM入门与Shiny操作指南?id=第一章-认识轨迹模型)
@@ -10,15 +10,26 @@
 - [第五章 完整实战案例](/轨迹模型GMM入门与Shiny操作指南?id=第五章-完整实战案例)
 - [第六章 结果解读与论文写作](/轨迹模型GMM入门与Shiny操作指南?id=第六章-结果解读与论文写作)
 - [第七章 常见问题 FAQ](/轨迹模型GMM入门与Shiny操作指南?id=第七章-常见问题-faq)
-
-<p>附录</p>
-
 - [附录 A 参数速查表](/轨迹模型GMM入门与Shiny操作指南?id=附录-a-参数速查表)
 - [附录 B 术语表](/轨迹模型GMM入门与Shiny操作指南?id=附录-b-术语表)
 - [附录 C 推荐阅读与参考文献](/轨迹模型GMM入门与Shiny操作指南?id=附录-c-推荐阅读与参考文献)
 - [附录 D 运行环境与依赖](/轨迹模型GMM入门与Shiny操作指南?id=附录-d-运行环境与依赖)
 
+<p>教程二 · K-means 聚类分析</p>
+
+- [第零章 平台入口与数据准备](/K-means聚类分析入门与平台操作指南?id=第零章-平台入口与数据准备)
+- [第一章 认识聚类分析与 K-means](/K-means聚类分析入门与平台操作指南?id=第一章-认识聚类分析与-k-means)
+- [第二章 K-means 统计学理论基础](/K-means聚类分析入门与平台操作指南?id=第二章-k-means-统计学理论基础)
+- [第三章 平台 K-means 模块操作指南](/K-means聚类分析入门与平台操作指南?id=第三章-平台-k-means-模块操作指南)
+- [第四章 完整实战案例](/K-means聚类分析入门与平台操作指南?id=第四章-完整实战案例)
+- [第五章 结果解读与论文写作](/K-means聚类分析入门与平台操作指南?id=第五章-结果解读与论文写作)
+- [第六章 常见问题 FAQ](/K-means聚类分析入门与平台操作指南?id=第六章-常见问题-faq)
+- [附录 A 参数速查表](/K-means聚类分析入门与平台操作指南?id=附录-a-参数速查表)
+- [附录 B 术语表](/K-means聚类分析入门与平台操作指南?id=附录-b-术语表)
+- [附录 C 推荐阅读与参考文献](/K-means聚类分析入门与平台操作指南?id=附录-c-推荐阅读与参考文献)
+
 <p>其他</p>
 
-- [⬇ 下载 Markdown 全文](https://raw.githubusercontent.com/584493763/trajectory-gmm-guide/main/轨迹模型GMM入门与Shiny操作指南.md)
+- [⬇ 教程一 Markdown 原文](https://584493763.github.io/trajectory-gmm-guide/轨迹模型GMM入门与Shiny操作指南.md)
+- [⬇ 教程二 Markdown 原文](https://584493763.github.io/trajectory-gmm-guide/K-means聚类分析入门与平台操作指南.md)
 - [GitHub 仓库](https://github.com/584493763/trajectory-gmm-guide)
