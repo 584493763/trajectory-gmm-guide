@@ -1,7 +1,7 @@
 # 轨迹模型（GMM）入门与 Shiny 操作指南
 
 > 面向医学生与临床研究者的从零到一实操手册
-> 适用工具：郑老师轨迹分析工具 v2.1.0
+> 适用工具：轨迹分析工具 v2.1.0（GMM 轨迹模型模块，轨迹单独版）
 > 开发框架：R Shiny + shinydashboard；核心统计引擎：`lcmm` 包（`hlme` 函数）
 
 ---
@@ -164,9 +164,7 @@ run_app()
 
 对个体 $i$（$i=1,\dots,N$）在时间点 $t_{ij}$ 的观测值 $y_{ij}$，若其属于潜类别 $k$（$k=1,\dots,K$），则：
 
-$$
-y_{ij} \mid c_i = k \;=\; \beta_{0k} + \beta_{1k} t_{ij} + \beta_{2k} t_{ij}^2 + \beta_{3k} t_{ij}^3 \;+\; b_i \;+\; \varepsilon_{ij}
-$$
+$$y_{ij} \mid c_i = k \;=\; \beta_{0k} + \beta_{1k} t_{ij} + \beta_{2k} t_{ij}^2 + \beta_{3k} t_{ij}^3 \;+\; b_i \;+\; \varepsilon_{ij}$$
 
 各项含义：
 
@@ -175,9 +173,7 @@ $$
 - $\varepsilon_{ij} \sim N(0,\sigma_\varepsilon^2)$：**残差**（测量误差）。
 - $c_i$：个体 $i$ 的潜类别，属于第 $k$ 类的概率由多项 Logit 模型给出：
 
-$$
-P(c_i=k)=\frac{e^{\theta_k}}{\sum_{j=1}^{K} e^{\theta_j}},\qquad \sum_{k=1}^{K}P(c_i=k)=1
-$$
+$$P(c_i=k)=\frac{e^{\theta_k}}{\sum_{j=1}^{K} e^{\theta_j}},\qquad \sum_{k=1}^{K}P(c_i=k)=1$$
 
 **关键理解**：类别的概率不是外部给定的，而是与轨迹形状参数**一起、通过最大似然方法联合估计**出来的。
 
