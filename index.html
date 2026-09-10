@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>轨迹模型（GMM）入门与 Shiny 操作指南</title>
+  <meta name="description" content="面向医学生与临床研究者的 GMM 轨迹模型入门 + Shiny 工具操作手册">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+  <style>
+    :root { --sidebar-width: 300px; }
+    .sidebar > h1:first-child { margin: 10px 0 20px; font-size: 1.4rem; }
+    .sidebar ul { margin: 0; }
+    .sidebar li p { margin: 1em 0 .5em; color: #9097a1; font-weight: 700; font-size: 12px; letter-spacing: .5px; }
+    .markdown-section table { display: table; width: 100%; }
+    .katex-display { overflow-x: auto; overflow-y: hidden; padding: 2px 0; }
+  </style>
+</head>
+<body>
+  <div id="app">正在加载教程…</div>
+
+  <script>
+    window.$docsify = {
+      name: '轨迹模型（GMM）入门与 Shiny 操作指南',
+      repo: '584493763/trajectory-gmm-guide',
+      homepage: 'README.md',
+      loadSidebar: true,
+      subMaxLevel: 0,
+      auto2top: true,
+      mergeNavbar: true,
+      relativePath: false,
+      notFoundPage: true,
+      search: {
+        maxAge: 86400000,
+        paths: 'auto',
+        placeholder: '搜索教程内容…',
+        noData: '没有找到相关内容',
+        depth: 3
+      },
+      plugins: [
+        function (hook, vm) {
+          hook.doneEach(function () {
+            if (window.renderMathInElement) {
+              window.renderMathInElement(document.getElementById('main'), {
+                delimiters: [
+                  { left: '$$', right: '$$', display: true },
+                  { left: '$', right: '$', display: false },
+                  { left: '\\(', right: '\\)', display: false },
+                  { left: '\\[', right: '\\]', display: true }
+                ],
+                throwOnError: false,
+                ignoredTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+              });
+            }
+          });
+        }
+      ]
+    };
+  </script>
+
+  <script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
+  <script src="//cdn.jsdelivr.net/npm/docsify@4/lib/plugins/search.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+</body>
+</html>
