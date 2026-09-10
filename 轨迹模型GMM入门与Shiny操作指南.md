@@ -1,13 +1,14 @@
 # 轨迹模型（GMM）入门与 Shiny 操作指南
 
 > 面向医学生与临床研究者的从零到一实操手册
-> 适用工具：郑老师团队轨迹分析工具 v2.1.0
+> 适用工具：轨迹分析工具 v2.1.0（GMM 轨迹模型模块，轨迹单独版）
 > 开发框架：R Shiny + shinydashboard；核心统计引擎：`lcmm` 包（`hlme` 函数）
 
 ---
 
 ## 目录
 
+- [第零章 安装与启动](#第零章-安装与启动)
 - [第一章 认识轨迹模型](#第一章-认识轨迹模型)
 - [第二章 统计学理论基础](#第二章-统计学理论基础)
 - [第三章 数据准备理论](#第三章-数据准备理论)
@@ -18,6 +19,70 @@
 - [附录 A 参数速查表](#附录-a-参数速查表)
 - [附录 B 术语表](#附录-b-术语表)
 - [附录 C 推荐阅读与参考文献](#附录-c-推荐阅读与参考文献)
+- [附录 D 运行环境与依赖](#附录-d-运行环境与依赖)
+
+---
+
+## 第零章 安装与启动
+
+> 本工具以 R 包 **`Ztraje`** 的形式分发。安装完成后，调用 `run_app()` 即可在浏览器中打开 Shiny 操作界面。
+
+### 0.1 前置条件
+
+1. **安装 R**：从 <https://cran.r-project.org/> 下载并安装 R（建议 4.2 及以上版本）。
+2. **安装 RStudio（推荐但非必需）**：从 <https://posit.co/download/rstudio-desktop/> 下载 RStudio Desktop，它提供更友好的代码编辑与运行环境。
+3. 本工具是一个 **Shiny 应用**：`run_app()` 会在本机启动服务并自动用浏览器打开界面。**你无需单独配置 Shiny 环境**，所需依赖会随安装过程一并处理。
+
+### 0.2 安装本工具（四步）
+
+在 RStudio 的 **Console（控制台）** 中依次运行以下代码：
+
+```r
+# 1) 安装 remotes：用于从 GitHub / 远程源安装 R 包
+install.packages("remotes")
+
+# 2) 安装 Zstats 团队提供的包管理工具
+remotes::install_github("Zstats/zstatsManage")
+
+# 3) 通过 OSS 源安装轨迹分析工具 Ztraje
+zstatsManage::installFromOSS("Ztraje")
+
+# 4) 加载包并启动应用
+library(Ztraje)
+run_app()
+```
+
+说明：
+
+- 第 1、2 步只需执行**一次**；
+- 第 3 步会把工具本体及其依赖（`shiny`、`shinydashboard`、`lcmm`、`ggplot2`、`tidyLPA` 等）安装到本地；
+- 第 4 步 `run_app()` 会启动应用。控制台出现类似 `Listening on http://127.0.0.1:xxxx` 的提示，并**自动打开浏览器**；若没有自动打开，把该地址复制到浏览器即可。
+
+### 0.3 以后每次使用
+
+安装完成后**不必**重复安装，每次使用只需：
+
+```r
+library(Ztraje)
+run_app()
+```
+
+> 更换电脑或重装 R 之后，需要重新执行 0.2 的四步。
+
+### 0.4 安装常见问题
+
+| 现象 | 可能原因 | 处理办法 |
+| --- | --- | --- |
+| `install_github()` 连接失败 / 超时 | 本机无法访问 github.com（国内较常见） | 更换网络或使用代理后重试；也可请能联网的同事协助安装 |
+| `installFromOSS()` 下载缓慢或中断 | OSS 源网络波动 | 稍后重试；或更换网络环境 |
+| `run_app()` 提示缺少某个 R 包 | 依赖未装全 | 按报错提示 `install.packages("包名")` 后重试 |
+| 提示端口被占用 | 端口冲突 | 关闭占用端口的程序后重试；可查看 `?run_app` 帮助确认是否支持自定义端口 |
+| "导出 PPT（矢量）"不可用 | 缺少可选包 | `install.packages(c("officer", "rvg"))`，不影响其他功能 |
+| 数据导入中文乱码 | 文件编码 | 见 4.2 数据准备（工具已自动尝试 UTF-8 / GBK） |
+
+### 0.5 与后续章节的关系
+
+成功打开界面后，建议按 **第零章（安装）→ 第一、二章（理论与概念）→ 第三章（数据准备）→ 第四章（界面操作）→ 第五章（完整实战）** 的顺序阅读。
 
 ---
 
@@ -750,9 +815,10 @@ $$
 ## 附录 D 运行环境与依赖（供部署/复现用）
 
 - **框架**：R + Shiny + shinydashboard。
-- **必需 R 包**：`shiny`、`shinydashboard`、`DT`、`readxl`、`haven`、`readr`、`dplyr`、`shinyjs`、`ggplot2`、`lcmm`、`ggsci`、`RColorBrewer`、`ClusterR`、`writexl`、`reshape2`、`colourpicker`、`tidyLPA`。
+- **安装与启动**：见 [第零章 安装与启动](#第零章-安装与启动)（推荐通过 `Ztraje` 包一键安装）。
+- **底层必需 R 包**（由安装过程自动装配，此处列出仅供排查）：`shiny`、`shinydashboard`、`DT`、`readxl`、`haven`、`readr`、`dplyr`、`shinyjs`、`ggplot2`、`lcmm`、`ggsci`、`RColorBrewer`、`ClusterR`、`writexl`、`reshape2`、`colourpicker`、`tidyLPA`。
 - **可选 R 包**：`officer`、`rvg`（仅"导出 PPT（矢量）"功能需要）。
-- **安装**：
+- **手动安装依赖（仅当自动安装失败时）**：
 
 ```r
 install.packages(c("shiny","shinydashboard","DT","readxl","haven","readr",
@@ -761,7 +827,6 @@ install.packages(c("shiny","shinydashboard","DT","readxl","haven","readr",
                    "officer","rvg"))
 ```
 
-- **启动**：在应用目录下执行 `shiny::runApp()`。
 - **上传大小上限**：100 MB（`options(shiny.maxRequestSize = 100 * 1024^2)`）。
 
 ---
